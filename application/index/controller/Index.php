@@ -24,6 +24,9 @@ use app\index\controller\oak\Taxcollectionvisitor;
 use app\index\controller\oak\Textdumparmyvisitor;
 use app\index\controller\strategy\Marklogic;
 use app\index\controller\strategy\Marklogicmarker;
+use app\index\controller\test\Userstore;
+use app\index\controller\test\Userstoretest;
+use app\index\controller\test\Validator;
 
 class Index extends \think\Controller
 {
@@ -168,5 +171,33 @@ class Index extends \think\Controller
     {
         $component = new Component;
         $component->parseFile();
+    }
+
+    public function manualTest()
+    {
+        $store = new Userstore;
+
+        $store->addUser('Joy', '123@baidu.com', '2222333222');
+        $store->notifyPasswordFailure('123@baidu.com');
+        dump($store->getUser('123@baidu.com'));
+    }
+
+    public function validateUser()
+    {
+        $store = new Userstore;
+
+        $valid = new Validator($store);
+
+        $store->addUser('Ross', '123@outlook.com', '2k232kkdks');
+
+        if ($valid->validateUser('123@outlook.com', '2k232kkdks')) {
+            print "pass, friend~";
+        }
+    }
+
+    public function gets()
+    {
+        $user = new Userstoretest;
+        $user->oak();
     }
 }
