@@ -1,0 +1,32 @@
+<control>
+    <command path="/" class="\app\index\controller\command\Defaults">
+        <view name="main" />
+        <status value="CMD_ERROR">
+            <view name="error" />
+        </status>
+        ddddddddd
+    </command>
+
+    <command path="/list" class="\app\index\controller\command\List">
+        <view name="list" />
+    </command>
+
+    <command path="/quickaddvenue" class="\app\index\controller\command\Addvenue">
+        <view name="quickadd" />
+    </command>
+
+    <command path="/addvenue" class="\app\index\controller\command\Addvenue">
+        <view name="addvenue"/>
+        <status value="CMD_OK">
+            <forward path="/addspace"/>
+        </status>
+    </command>
+
+    <command path="/addspace" class="\app\index\controller\command\Addspace">
+        <view name="addspace"/>
+        <status value="CMD_OK">
+            <forward path="/listvenue"/>
+        </status>
+    </command>
+
+</control>
