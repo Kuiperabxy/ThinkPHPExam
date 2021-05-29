@@ -6,18 +6,18 @@ class Validator
 {
     private $store;
 
-    public function __construct(Userstore $userstore)
+    public function __construct(UserStore $userstore)
     {
         $this->store = $userstore;
     }
 
     public function validateUser(string $mail, string $pass): bool
     {
-        if (!is_array($user = $this->store->getUser($mail))) {
+        if (!($user = $this->store->getUser($mail)) instanceof User) {
             return false;
         }
 
-        if ($user['pass'] == $pass) {
+        if ($user->getPass() == $pass) {
             return true;
         }
 
