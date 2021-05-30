@@ -36,9 +36,4 @@ class Userstore
     {
         return ($this->users[$mail]);
     }
-
-    public function oak()
-    {
-        return 11111;
-    }
 }

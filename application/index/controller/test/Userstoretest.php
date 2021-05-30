@@ -46,4 +46,8 @@ class Userstoretest
         }
         $this->fail('short password exception expected');
     }
+    public function oak()
+    {
+        return 11111;
+    }
 }
