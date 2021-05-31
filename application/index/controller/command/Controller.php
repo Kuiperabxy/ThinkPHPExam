@@ -2,6 +2,9 @@
 
 namespace app\index\controller\command;
 
+/**
+ * 前端控制器 front controller
+ */
 class Controller
 {
     private $reg;
