@@ -4,7 +4,6 @@
         <status value="CMD_ERROR">
             <view name="error" />
         </status>
-        ddddddddd
     </command>
 
     <command path="/list" class="\app\index\controller\command\List">

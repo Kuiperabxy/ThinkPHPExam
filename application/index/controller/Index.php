@@ -198,6 +198,6 @@ class Index extends \think\Controller
     public function gets()
     {
         $user = new Userstoretest;
-        $user->oak();
+        return $user->oak();
     }
 }
