@@ -2,6 +2,8 @@
 
 namespace app\index\controller;
 
+use app\index\controller\call\AboutCallable;
+use app\index\controller\call\AboutCallables;
 use app\index\controller\command\Component;
 use app\index\controller\command\Controller;
 use app\index\controller\oak\Unit;
@@ -199,5 +201,34 @@ class Index extends \think\Controller
     {
         $user = new Userstoretest;
         return $user->oak();
+    }
+
+    public function aboutCallable()
+    {
+        $callable = new AboutCallable();
+
+        $arr = array($callable, 'get');
+
+        is_callable($arr, true, $callName);
+
+        echo $callName;
+    }
+
+    public function analynousClass()
+    {
+        // dump(new class implements AboutCallable {
+        //     public function get()
+        //     {
+        //         echo "This is a analynous class";
+        //     }
+        // });
+
+        $call = new AboutCallables;
+        $call->get(new class extends AboutCallable {
+            public function get(AboutCallable $aboutCallable)
+            {
+                return $aboutCallable->ring;
+            }
+        });
     }
 }
