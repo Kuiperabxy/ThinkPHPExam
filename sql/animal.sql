@@ -17,3 +17,31 @@ VALUES (001, 100),
     (002, 300),
     (002, 800),
     (002, 800);
+
+UPDATE `order` SET create_date = '2018-01-01 00:00:00' WHERE order_id = 1;
+
+UPDATE `order` SET create_date = '2018-01-02 00:00:00' WHERE order_id = 2;
+
+UPDATE `order` SET create_date = '2018-01-02 00:00:00' WHERE order_id = 3;
+
+UPDATE `order` SET create_date = '2018-01-03 00:00:00' WHERE order_id = 4;
+
+UPDATE `order` SET create_date = '2018-01-04 00:00:00' WHERE order_id = 5;
+
+UPDATE `order` SET create_date = '2018-01-03 00:00:00' WHERE order_id = 6;
+
+UPDATE `order` SET create_date = '2018-01-04 00:00:00' WHERE order_id = 7;
+
+UPDATE `order` SET create_date = '2018-01-10 00:00:00' WHERE order_id = 8;
+
+UPDATE `order` SET create_date = '2018-01-16 00:00:00' WHERE order_id = 9;
+
+UPDATE `order` SET create_date = '2018-01-22 00:00:00' WHERE order_id = 10;
+
+
+
+
+
+
+
+
