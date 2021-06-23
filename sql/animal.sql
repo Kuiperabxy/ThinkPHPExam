@@ -281,3 +281,53 @@ WHERE
 AND TABLE_NAME = 'emp_linear_hash';
 
 INSERT INTO `emp_linear_hash` (id, ename, job, store_id) VALUES (2, 'Nokic', 'Basketball player', 234);
+
+# Key 分区
+
+CREATE TABLE `emp_key` (
+    id INT NOT NULL,
+    ename VARCHAR(30),
+    hired DATE NOT NULL DEFAULT '1970-01-01',
+    separated DATE NOT NULL DEFAULT '9999-12-31',
+    job VARCHAR(30) NOT NULL,
+    store_id INT NOT NULL,
+    PRIMARY KEY (id)
+) PARTITION BY KEY () PARTITIONS 4;
+
+
+#  Subpartition 子分区
+
+CREATE TABLE `ts_subpartition` (
+    id INT,
+    purchased DATE
+) PARTITION BY RANGE (YEAR(purchased)) 
+  SUBPARTITION BY HASH (TO_DAYS(purchased)) SUBPARTITIONS 2 (
+      PARTITION P01 VALUES LESS THAN (1990),
+      PARTITION P02 VALUES LESS THAN (2000),
+      PARTITION P03 VALUES LESS THAN MAXVALUE
+  );
+
+# 交换分区
+
+CREATE TABLE `e` (
+    id INT NOT NULL,
+    fname VARCHAR(30),
+    lname VARCHAR(30)
+) PARTITION BY RANGE (id) (
+    PARTITION p01 VALUES LESS THAN (50),
+    PARTITION p02 VALUES LESS THAN (100),
+    PARTITION p03 VALUES LESS THAN (150),
+    PARTITION p04 VALUES LESS THAN  MAXVALUE
+);
+
+INSERT INTO `e`(id, fname, lname) VALUES (1669, 'Jim', 'Smith'), (337, 'Mary', 'Jones'), (16, 'Frank', 'White'), (2005, 'Linda', 'Black');
+
+SELECT PARTITION_NAME, TABLE_ROWS FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME = 'e';
+
+ALTER TABLE `e` EXCHANGE PARTITION p1 WITH TABLE `e2`;
+
+ALTER TABLE `e2` REMOVE PARTITIONING;
+
+CREATE INDEX idx_e2 ON  e2(fname);
+
+ALTER TABLE `e` RENAME  INDEX idx_e TO idx_e2;
