@@ -17,5 +17,5 @@ CREATE TABLE `after_sale_statistics`(
     refund_amount DECIMAL(8, 2) NOT NULL DEFAULT 0.00 COMMENT '退款金额',
     tracking_number VARCHAR(32) NOT NULL DEFAULT '中通:xxxxxxxxxxxxxxx' COMMENT '退货快递单号',
     cash_back_amount DECIMAL(8, 2) NOT NULL DEFAULT 0.00 COMMENT '返现金额',
-    cash_back_Alipay_account VARCHAR(32) NOT NULL DEFAULT '' COMMENT '支付宝返现账号'
+    cash_back_Alipay_account VARCHAR(64) NOT NULL DEFAULT '' COMMENT '支付宝返现账号'
 )ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_cs_0900_ai_ci COMMENT '售后统计表';
